@@ -26,8 +26,8 @@ namespace IActionResultExample.Controllers
             if (bookId <= 0)
             {
                 return BadRequest("Book id can't be less then or equal to zero");
-            } 
-            
+            }
+
             if (bookId > 1000)
             {
                 return NotFound("Book id can't be greater than 1000");
@@ -42,11 +42,30 @@ namespace IActionResultExample.Controllers
 
             // return File("/sample.pdf", "application/pdf");
 
+            // 302 - Found - RedirectToActionResult
+            // return new RedirectToActionResult("Books", "Store", new { id = bookId });
             // 302 - Found
-            // return new RedirectToActionResult("Books", "Store", new { });
+            // return RedirectToAction("Books", "Store", new { id = bookId });
 
+            // 301 - Moved Permanently - RedirectToActionResult
+            // return new RedirectToActionResult("Books", "Store", new { }, true);
             // 301 - Moved Permanently
-            return new RedirectToActionResult("Books", "Store", new { }, true);
+            // return RedirectToActionPermanent("Books", "Store", new { id = bookId });
+
+            // 302 - Found - LocalRedirectResult
+            // return new LocalRedirectResult($"store/books/{bookId}");
+            // 302 - Found
+            // return LocalRedirect($"store/books/{bookId}");
+
+            // 301 - Moved Permanently - LocalRedirectResult
+            // return new LocalRedirectResult($"store/books/{bookId}", true);
+            // 301 - Moved Permanently
+            // return LocalRedirect($"store/books/{bookId}");
+
+            // 302 - Found
+            // return Redirect($"store/books/{bookId}");
+            // 301 - Moved Permanently
+            return RedirectPermanent($"store/books/{bookId}");
         }
     }
 }
