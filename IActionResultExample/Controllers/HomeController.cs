@@ -5,10 +5,10 @@ namespace IActionResultExample.Controllers
     public class HomeController : Controller
     {
         [Route("bookstore/{bookid?}/{isloggedin?}")]
-        public IActionResult Index(int? bookid, bool? isloggedin)
+        public IActionResult Index([FromQuery]int? bookid, [FromRoute]bool? isloggedin)
         {
             // Book id should be applied
-            // Url: /bookstore?bookid=10&isLoggedin=true
+            // Url: /bookstore?bookid=10&isloggedin=true
             if (bookid.HasValue == false)
             {
                 // return new BadRequestResult();
