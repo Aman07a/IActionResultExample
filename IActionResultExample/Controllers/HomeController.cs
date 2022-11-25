@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using IActionResultExample.Models;
 
 namespace IActionResultExample.Controllers
 {
     public class HomeController : Controller
     {
         [Route("bookstore/{bookid?}/{isloggedin?}")]
-        public IActionResult Index([FromQuery]int? bookid, [FromRoute]bool? isloggedin)
+        public IActionResult Index([FromQuery]int? bookid, [FromRoute]bool? isloggedin, Book book)
         {
             // Book id should be applied
             // Url: /bookstore?bookid=10&isloggedin=true
@@ -31,7 +32,7 @@ namespace IActionResultExample.Controllers
                 return StatusCode(401);
             }
 
-            return Content($"Book id: {bookid}", "text/plain");
+            return Content($"Book id: {bookid}, Book: {book}.", "text/plain");
         }
     }
 }
