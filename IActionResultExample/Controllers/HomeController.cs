@@ -6,7 +6,7 @@ namespace IActionResultExample.Controllers
     public class HomeController : Controller
     {
         [Route("bookstore/{bookid?}/{isloggedin?}")]
-        public IActionResult Index([FromQuery]int? bookid, [FromRoute]bool? isloggedin, Book book)
+        public IActionResult Index(int? bookid, [FromRoute]bool? isloggedin, Book book)
         {
             // Book id should be applied
             // Url: /bookstore?bookid=10&isloggedin=true
