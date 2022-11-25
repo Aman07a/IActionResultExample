@@ -4,7 +4,7 @@ namespace IActionResultExample.Controllers
 {
     public class HomeController : Controller
     {
-        [Route("book")]
+        [Route("bookstore")]
         public IActionResult Index()
         {
             // Book id should be applied
@@ -40,7 +40,13 @@ namespace IActionResultExample.Controllers
                 return StatusCode(401);
             }
 
-            return File("/sample.pdf", "application/pdf");
+            // return File("/sample.pdf", "application/pdf");
+
+            // 302 - Found
+            // return new RedirectToActionResult("Books", "Store", new { });
+
+            // 301 - Moved Permanently
+            return new RedirectToActionResult("Books", "Store", new { }, true);
         }
     }
 }
